@@ -1,12 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { fetchProduct } from "../api/api"
 import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
 function ProductPage() {
     const navigate = useNavigate()
     const handleGoBack = () => {
          navigate(-1)
     }
     const {id} = useParams()
+    const { addToCart } = useContext(CartContext)
     const [product,setProduct] = useState(null)
     useEffect(()=> {
         const loadProduct = async() => {
@@ -40,7 +43,9 @@ function ProductPage() {
                 <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
                 <p className="text-gray-600 mb-2">Категория: {product.category}</p>
                 <p className="text-2xl font-bold text-blue-600 mb-4">{product.price} $</p>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                <button 
+                 onClick={() => addToCart(product)}
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
                     В корзину
                 </button>
                 <p className="text-gray-700 leading-relaxed">{product.description}</p>
