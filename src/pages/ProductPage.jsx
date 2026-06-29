@@ -40,7 +40,11 @@ function ProductPage() {
                 <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
                 <p className="text-gray-600 mb-2">Категория: {product.category}</p>
                 <p className="text-2xl font-bold text-blue-600 mb-4">{product.price} $</p>
+                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                    В корзину
+                </button>
                 <p className="text-gray-700 leading-relaxed">{product.description}</p>
+            
 
                 {product.rating && (
                     <div className="mt-4 flex items-center gap-2">
